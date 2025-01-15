@@ -2,6 +2,16 @@ import React from 'react';
 import Navbar from './Navbar';
 
 export const Homepage = () => {
+  // Centralized paths for category images
+  const categoryImages = {
+    'Fruits & Vegetables': './fruits.jpg',
+    Dairy: './Dairy.jpg',
+    Snacks: './snacks.jpg',
+    Beverages: './Beverages.jpg',
+    Household: './household.jpg',
+    Bakery: './bakery.jpeg',
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Navbar */}
@@ -11,7 +21,7 @@ export const Homepage = () => {
       <div
         className="bg-green-500 text-white text-center py-16 px-4 relative"
         style={{
-          backgroundImage: "url('/speedymart_hero_bg.png')",
+          backgroundImage: "url('./image.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -40,24 +50,19 @@ export const Homepage = () => {
       <div className="py-16 px-4">
         <h2 className="text-2xl font-bold mb-10 text-center">Shop by Categories</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {['Fruits & Vegetables', 'Dairy', 'Snacks', 'Beverages', 'Household', 'Bakery'].map(
-            (category) => (
-              <div
-                key={category}
-                className="bg-white shadow rounded-lg overflow-hidden text-center transform hover:scale-105 transition-transform"
-              >
-                <img
-                  src={`/categories/${category
-                    .toLowerCase()
-                    .replace(/ & /g, '-')
-                    .replace(/ /g, '-')}.png`}
-                  alt={category}
-                  className="w-full h-32 object-cover"
-                />
-                <p className="p-2 font-medium text-gray-700">{category}</p>
-              </div>
-            )
-          )}
+          {Object.keys(categoryImages).map((category) => (
+            <div
+              key={category}
+              className="bg-white shadow rounded-lg overflow-hidden text-center transform hover:scale-105 transition-transform"
+            >
+              <img
+                src={categoryImages[category]}
+                alt={category}
+                className="w-full h-32 object-cover"
+              />
+              <p className="p-2 font-medium text-gray-700">{category}</p>
+            </div>
+          ))}
         </div>
       </div>
 
